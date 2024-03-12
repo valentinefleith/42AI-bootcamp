@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #    Created: 2024/03/12 18:04:40 by vafleith          #+#    #+#             #
-#    Updated: 2024/03/12 21:07:21 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/13 00:07:24 by vafleith         ###   ########.fr        #
 #                                                                             #
 # *************************************************************************** #
 
@@ -119,3 +119,22 @@ class Vector:
 
     def __repr__(self):
         return f"Values: {self.values}\nShape: {self.shape}"
+
+    def dot(self, other):
+        if not isinstance(other, Vector) or self.shape != other.shape:
+            raise ValueError("Vectors must have the same shapes.")
+        result = 0.0
+        for i in range(len(self.values)):
+            for j in range(len(self.values[i])):
+                result += self.values[i][j] * other.values[i][j]
+        return result
+
+    def T(self):
+        if self.shape[0] == 1:
+            return Vector([[elem] for elem in self.values[0]])
+        if self.shape[1] == 1:
+            new = []
+            for elem in self.values:
+                new.extend(elem)
+            return Vector([new])
+        raise ValueError("Incorrect vector format.")
