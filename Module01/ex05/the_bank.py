@@ -34,6 +34,7 @@ class Bank(object):
     """The bank"""
     def __init__(self):
         self.accounts = []
+
     def add(self, new_account):
         """ Add new_account in the Bank
         @new_account: Account() new account to append
@@ -42,7 +43,8 @@ class Bank(object):
 # test if new_account is an Account() instance and if
 # it can be appended to the attribute accounts
 # ... Your code ...
-        self.accounts.append(new_account)
+        if isinstance(new_account, Account):
+            self.accounts.append(new_account)
 
     def transfer(self, origin, dest, amount):
         """" Perform the fund transfer
