@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #    Created: 2024/03/12 18:04:40 by vafleith          #+#    #+#             #
-#    Updated: 2024/03/12 20:14:52 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/12 20:36:25 by vafleith         ###   ########.fr        #
 #                                                                             #
 # *************************************************************************** #
 
@@ -15,7 +15,7 @@ class Vector:
     def __init__(self, values):
         self.values = self.process_values(values)
         self.shape = (
-            (1, len(self.values))
+            (1, len(self.values[0]))
             if self.is_row_vector(self.values)
             else (len(self.values), 1)
         )
@@ -55,6 +55,17 @@ class Vector:
     @staticmethod
     def is_valid_range(start, end):
         return isinstance(start, int) and isinstance(end, int) and start <= end
+
+    def __add__(self, other):
+        if not (isinstance(other, Vector)) or self.shape != other.shape:
+            raise ValueError("Vectors must have the same shapes")
+        result_values = []
+        for i in range(len(self.values)):
+            row = []
+            for j in range(len(self.values[i])):
+                row.append(self.values[i][j] + other.values[i][j])
+            result_values.append(row)
+        return Vector(result_values)
 
     def __str__(self):
         values = str(self.values)
