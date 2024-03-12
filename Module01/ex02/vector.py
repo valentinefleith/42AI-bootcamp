@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #    Created: 2024/03/12 18:04:40 by vafleith          #+#    #+#             #
-#    Updated: 2024/03/12 20:36:25 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/12 21:07:21 by vafleith         ###   ########.fr        #
 #                                                                             #
 # *************************************************************************** #
 
@@ -67,7 +67,55 @@ class Vector:
             result_values.append(row)
         return Vector(result_values)
 
+    def __radd__(self, other):
+        return self + other
+
+    def __sub__(self, other):
+        if not (isinstance(other, Vector)) or self.shape != other.shape:
+            raise ValueError("Vectors must have the same shapes.")
+        result_values = []
+        for i in range(len(self.values)):
+            row = []
+            for j in range(len(self.values[i])):
+                row.append(self.values[i][j] - other.values[i][j])
+            result_values.append(row)
+        return Vector(result_values)
+
+    def __rsub__(self, other):
+        return other - self
+
+    def __truediv__(self, scalar):
+        if not isinstance(scalar, (float, int)):
+            raise ValueError("Can only divide by float/int.")
+        if float(scalar) == 0.0:
+            raise ZeroDivisionError()
+        result_values = []
+        for i in range(len(self.values)):
+            row = []
+            for j in range(len(self.values[i])):
+                row.append(self.values[i][j] / scalar)
+            result_values.append(row)
+        return Vector(result_values)
+
+    def __rtruediv__(self, scalar):
+        raise NotImplmentedError("Division of scalar by a Vector is not defined here.")
+
+    def __mul__(self, scalar):
+        if not isinstance(scalar, (float, int)):
+            raise ValueError("Can only divide by float/int.")
+        result_values = []
+        for i in range(len(self.values)):
+            row = []
+            for j in range(len(self.values[i])):
+                row.append(self.values[i][j] * scalar)
+            result_values.append(row)
+        return Vector(result_values)
+
+    def __rmul__(self, scalar):
+        return self * scalar
+
     def __str__(self):
-        values = str(self.values)
-        shape = str(self.shape)
-        return values + '\n' + shape
+        return f"Values: {self.values}\nShape: {self.shape}"
+
+    def __repr__(self):
+        return f"Values: {self.values}\nShape: {self.shape}"
