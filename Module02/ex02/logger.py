@@ -6,13 +6,33 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/13 12:35:43 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/13 12:41:09 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/13 15:52:08 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import time
 from random import randint
 import os
+
+
+def log(func):
+    USERNAME = f"({os.getlogin()})"
+    ACTION = func.__name__.replace('_', ' ').title()
+
+    def inner(*args, **kwargs):
+        called_at = time.time()
+        to_execute = func(*args, **kwargs)
+        exec_time = time.time() - called_at
+        unit = 's'
+        if (exec_time < 0.1):
+            unit = 'ms'
+            exec_time *= 1000
+        instruction = f"{USERNAME}Running:\t{ACTION}\t[ exec-time = {exec_time:.3f} {unit} ]\n"
+        with open("machine.log", "a") as file:
+            file.write(instruction)
+        return to_execute
+    return inner
+
 
 #... your definition of log decorator...
 class CoffeeMachine():
