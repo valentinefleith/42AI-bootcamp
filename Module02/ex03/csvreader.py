@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #    Created: 2024/03/13 15:56:08 by vafleith          #+#    #+#             #
-#    Updated: 2024/03/14 00:04:34 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/14 01:13:14 by vafleith         ###   ########.fr        #
 #                                                                             #
 # *************************************************************************** #
 
@@ -22,44 +22,47 @@ class CsvReader:
         self.header = header
         self.skip_top = skip_top
         self.skip_bottom = skip_bottom
-        self.file_obj = open(self.filename, "r")
-        self.data = self.parse_data()
-
-    def parse_data(self):
-        if is_corrputed(self.file_obj):
-            return None
-        data = []
-        lines = self.file_obj.readlines()
-        for i, line in enumerate(lines):
-            if i < self.skip_top or i > len(lines) - self.skip_bottom:
-                continue
-            data.append([elem.strip() for elem in line.strip().split(self.sep)])
-        return data
+        self.file_obj = None
+        self.data = []
 
     def __enter__(self):
-        # TODO : verify not corrputed here
+        try:
+            self.file_obj = open(self.filename, "r")
+        except FileNotFoundError:
+            return None
+        content = self.file_obj.readlines()
+        if len(content) == 0:
+            return None
+        line_length = len(content[0].split(self.sep))
+        for _, line in enumerate(content):
+            if len(line.split(self.sep)) != line_length:
+                return None
+        self.parse_data(content)
         return self
 
     def __exit__(self, type, value, traceback):
         if self.file_obj is not None:
             self.file_obj.close()
 
-    def getdata(self):
-        """
-        Retrieves the data/records from skip_top to skip_bottom.
-        Return:
-            nested list (list(list, list, ...)) representing the data.
-        """
-        data = []
-        lines = self.file_obj.readlines()
-        for i, line in enumerate(lines):
-            if i < self.skip_top or i > len(lines) - self.skip_bottom:
+    def parse_data(self, content):
+        for i, line in enumerate(content):
+            if i < self.skip_top or i > len(content) - self.skip_bottom:
                 continue
-            data.append([elem.strip() for elem in line.strip().split(self.sep)])
-        return data
+            self.data.append([elem.strip() for elem in line.strip().split(self.sep)])
+        if self.header:
+            self.header = [elem.strip() for elem in content[0].strip().split(self.sep)]
+
+    def getdata(self):
+        return self.data
+
+    def getheader(self):
+        return self.header
 
 
 if __name__ == "__main__":
-    with CsvReader('good.csv') as file:
+    with CsvReader("good.csv", header=True) as file:
         fdata = file.getdata()
-        print(fdata)
+        header = file.getheader()
+        print(header)
+        for line in fdata:
+            print(line)
