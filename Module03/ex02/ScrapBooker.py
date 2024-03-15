@@ -15,7 +15,7 @@ import numpy as np
 
 
 class ScrapBooker:
-    def crop(self, array, dim, position=(0,0)):
+    def crop(self, array, dim, position=(0, 0)):
         """
         Crops the image as a rectangle via dim arguments (being the new height
         and width of the image) from the coordinates given by position arguments.
@@ -35,7 +35,9 @@ class ScrapBooker:
         shape = np.shape(array)
         if position[0] + dim[0] > shape[0] or position[1] + dim[1] > shape[1]:
             return None
-        cropped = array[position[0]:position[0] + dim[0], position[1]: position[1] + dim[1]]
+        cropped = array[
+            position[0] : position[0] + dim[0], position[1] : position[1] + dim[1]
+        ]
         return cropped
 
     def thin(self, array, n, axis):
@@ -81,11 +83,33 @@ class ScrapBooker:
         if n < 0:
             return None
         new_arr = np.copy(array)
-        if n == 1:
+        if n == 0:
             return new_arr
         for _ in range(n):
             new_arr = np.concatenate((new_arr, array), axis=axis)
         return new_arr
+
+    def mosaic(self, array, dim):
+        """
+        Makes a grid with multiple copies of the array. The dim argument specifies
+        the number of repetition along each dimensions.
+        Args:
+        -----
+            array: numpy.ndarray.
+            dim: tuple of 2 integers.
+        Return:
+        -------
+            new_arr: mosaic numpy.ndarray.
+            None (combinaison of parameters not compatible).
+        Raises:
+        -------
+            This function should not raise any Exception.
+        """
+        if any(dim) <= 0:
+            return None
+        horizontal = self.juxtapose(array, dim[0] - 1, 0)
+        mosaic = self.juxtapose(horizontal, dim[1] - 1, 1)
+        return mosaic
 
 
 def main():
@@ -102,8 +126,11 @@ def main():
     #         break
     # imp.display(arr)
     ######## juxtapose test #########
-    juxtaposed = sb.juxtapose(arr, 2, 1)
-    imp.display(juxtaposed)
+    # juxtaposed = sb.juxtapose(arr, 2, 1)
+    # imp.display(juxtaposed)
+    ######## mosaic test #########
+    mosaic = sb.mosaic(arr, (0, 1))
+    imp.display(mosaic)
 
 
 if __name__ == "__main__":
