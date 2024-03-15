@@ -28,8 +28,8 @@ Numpy
 | [Module 03](/Module03)  |       NumPy   |    
 | :--------------- |:---------------| 
 | ex00  |   [`NumPyCreator.py`](/Module03/ex00/NumPyCreator.py)  |  
-| ex01  | [`ImageProcessor`](/Module03/ex01/ImageProcessor.py) | 
-| ex02  | [`ScrapBooker.py`](/Module01/ex02/ScrapBooker.py) |
-| ex03  | [`ColorFilter.py`](/Module01/ex03/ColorFilter.py) |
-| ex04  | [`Kmeans.py`](/Module01/ex04/Kmeans.py)  | 
+| ex01  | [`ImageProcessor.py`](/Module03/ex01/ImageProcessor.py) | 
+| ex02  | [`ScrapBooker.py`](/Module03/ex02/ScrapBooker.py) |
+| ex03  | [`ColorFilter.py`](/Module03/ex03/ColorFilter.py) |
+| ex04  | [`Kmeans.py`](/Module03/ex04/Kmeans.py)  | 
 
