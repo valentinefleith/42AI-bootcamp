@@ -20,6 +20,6 @@ Decorators, lambda, context manager and build package.
 | ex01  | [`main.py`](/Module02/ex01/main.py) | 
 | ex02  | [`logger.py`](/Module02/ex02/logger.py) |
 | ex03  | [`csvreader.py`](/Module02/ex03/csvreader.py) |
-| ex04  | `build.sh`  | 
+| ex04  | [`build.sh`](/Module02/ex04/build.sh)  | 
 | ex05 | `TinyStatistician.py` |
 
