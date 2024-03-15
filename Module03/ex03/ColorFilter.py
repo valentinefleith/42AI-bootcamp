@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 17:24:38 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/15 19:48:06 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/15 20:19:45 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,33 @@ class ColorFilter:
         red_filter[..., :3] = red_filter[..., :3] - only_blue_green[..., :3]
         return red_filter
 
+    def to_celluloid(self, array):
+        """
+        Applies a celluloid filter to the image received as a numpy array.
+        Celluloid filter must display at least four thresholds of shades.
+        Be careful! You are not asked to apply black contour on the object,
+        you only have to work on the shades of your images.
+        Remarks:
+        celluloid filter is also known as cel-shading or toon-shading.
+        Args:
+        -----
+            array: numpy.ndarray corresponding to the image.
+        Return:
+        -------
+            array: numpy.ndarray corresponding to the transformed image.
+            None: otherwise.
+        Raises:
+        -------
+            This function should not raise any Exception.
+        """
+        thresholds = np.linspace(array.min(), array.max(), 5)
+        celluloid = np.copy(array)
+        lower_threshold = thresholds[0]
+        for upper_threshold in thresholds[:1]:
+            mask = (celluloid[..., :3] > lower_threshold) & (celluloid[..., :3] < upper_threshold)
+            celluloid[..., :3][mask] = lower_threshold
+            lower_threshold = upper_threshold
+        return celluloid
 
 def main():
     imp = ImageProcessor()
@@ -105,8 +132,11 @@ def main():
     # green_filter = cf.to_green(arr)
     # imp.display(green_filter)
     ##### RED TEST #####
-    red_filter = cf.to_red(arr)
-    imp.display(red_filter)
+    # red_filter = cf.to_red(arr)
+    # imp.display(red_filter)
+    ##### CELLULOID TEST #####
+    celluloid_filter = cf.to_celluloid(arr)
+    imp.display(celluloid_filter)
     
 
 
