@@ -21,5 +21,15 @@ Decorators, lambda, context manager and build package.
 | ex02  | [`logger.py`](/Module02/ex02/logger.py) |
 | ex03  | [`csvreader.py`](/Module02/ex03/csvreader.py) |
 | ex04  | [`build.sh`](/Module02/ex04/build.sh)  | 
-| ex05 | `TinyStatistician.py` |
+| ex05 | [`TinyStatistician.py`](/Module02/ex05/TinyStatistician.py) |
+
+## [Module 03](/Module03)
+Numpy
+| [Module 03](/Module03)  |       NumPy   |    
+| :--------------- |:---------------| 
+| ex00  |   [`NumPyCreator.py`](/Module03/ex00/NumPyCreator.py)  |  
+| ex01  | [`ImageProcessor`](/Module03/ex01/ImageProcessor.py) | 
+| ex02  | [`ScrapBooker.py`](/Module01/ex02/ScrapBooker.py) |
+| ex03  | [`ColorFilter.py`](/Module01/ex03/ColorFilter.py) |
+| ex04  | [`Kmeans.py`](/Module01/ex04/Kmeans.py)  | 
 
