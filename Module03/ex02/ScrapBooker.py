@@ -38,7 +38,7 @@ class ScrapBooker:
         cropped = array[position[0]:position[0] + dim[0], position[1]: position[1] + dim[1]]
         return cropped
 
-    def thin(self, array, axis):
+    def thin(self, array, n, axis):
         """
         Deletes every n-th line pixels along the specified axis
         (0: vertical, 1: horizontal)
@@ -56,15 +56,24 @@ class ScrapBooker:
         ------
             This function should not raise any Exception
         """
-        pass
+        arr_shape = np.shape(array)
+        if (n > arr_shape[0] and axis == 0) or (n > arr_shape[1] and axis == 1):
+            return None
+        thin = np.delete(array, n, axis=axis)
+        return thin
 
 
 def main():
     imp = ImageProcessor()
     sb = ScrapBooker()
     arr = imp.load("42AI.png")
-    cropped = sb.crop(arr, (100, 100), (50, 50))
-    imp.display(cropped)
+    # cropped = sb.crop(arr, (100, 100), (50, 50))
+    # imp.display(cropped)
+    for _ in range(1, 100):
+        arr = sb.thin(arr, 50, 1)
+        if arr is None:
+            break
+    imp.display(arr)
 
 
 if __name__ == "__main__":
