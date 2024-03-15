@@ -62,18 +62,48 @@ class ScrapBooker:
         thin = np.delete(array, n, axis=axis)
         return thin
 
+    def juxtapose(self, array, n, axis):
+        """
+        Juxtaposes n copies of the image along the specified axis.
+        Args:
+        -----
+            array: numpy.ndarray.
+            n: positive non null integer.
+            axis: integer of value 0 or 1.
+        Return:
+        -------
+            new_arr: juxtaposed numpy.ndarray.
+            None (combinaison of parameters not compatible).
+        Raises:
+        -------
+            This function should not raise any Exception.
+        """
+        if n < 0:
+            return None
+        new_arr = np.copy(array)
+        if n == 1:
+            return new_arr
+        for _ in range(n):
+            new_arr = np.concatenate((new_arr, array), axis=axis)
+        return new_arr
+
 
 def main():
     imp = ImageProcessor()
     sb = ScrapBooker()
     arr = imp.load("42AI.png")
+    ######### crop test #########
     # cropped = sb.crop(arr, (100, 100), (50, 50))
     # imp.display(cropped)
-    for _ in range(1, 100):
-        arr = sb.thin(arr, 50, 1)
-        if arr is None:
-            break
-    imp.display(arr)
+    ######### thin test #########
+    # for _ in range(1, 100):
+    #     arr = sb.thin(arr, 50, 1)
+    #     if arr is None:
+    #         break
+    # imp.display(arr)
+    ######## juxtapose test #########
+    juxtaposed = sb.juxtapose(arr, 2, 1)
+    imp.display(juxtaposed)
 
 
 if __name__ == "__main__":
