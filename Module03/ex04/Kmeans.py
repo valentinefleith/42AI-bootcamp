@@ -1,18 +1,20 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    KmeansClustering.py                                :+:      :+:    :+:    #
+#    Kmeans.py                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 23:46:43 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/16 19:31:15 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/16 20:32:17 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import numpy as np
 from csvreader import CsvReader
 import sys
+import random
+import matplotlib.pyplot as plt
 
 class KmeansClustering:
     
@@ -35,7 +37,8 @@ class KmeansClustering:
         -------
         This function should not raise any Exception.
         """
-        #... your code ...
+        for _ in range(self.ncentroid):
+            self.centroids.append(random.choice(X))
 
     def predict(self, X):
         """
@@ -52,16 +55,16 @@ class KmeansClustering:
         """
         #... your code ...
 
-
-def cosine_similarity(a, b):
-    """
-    Input :
-    a : a numpy array representing word a as a vector
-    b : a numpy array representing word b as a vector
-    Output:
-    cos_ab : a scalar proportional to the the similarity in angles between a and b
-    """
-    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+    @staticmethod
+    def cosine_similarity(a, b):
+        """
+        Input :
+        a : a numpy array representing word a as a vector
+        b : a numpy array representing word b as a vector
+        Output:
+        cos_ab : a scalar proportional to the the similarity in angles between a and b
+        """
+        return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 
 def parse_args(args):
@@ -82,13 +85,25 @@ def parse_args(args):
     return filepath, ncentroid, max_iter
 
 
+def plot_data(data):
+    x = data[:, 1]
+    y = data[:, 2]
+    z = data[:, 3]
+    fig = plt.figure(figsize=(12, 7))
+    ax = fig.add_subplot(projection='3d')
+    ax.scatter(x, y, z)
+    plt.show()
+
+
 def main():
     if not 1 < len(sys.argv) < 5:
         sys.exit("Usage: py Kmeans.py filepath='/path.csv' {ncentroid=4 max_iter=30}")
     filepath, ncentroid, max_iter = parse_args(sys.argv[1:])
-    with CsvReader(filepath) as file:
-        data = file.getdata()
-    print(data)
+    with CsvReader(filepath, skip_top=1) as file:
+        data = np.array(file.getdata(), dtype=float)
+    plot_data(data)
+    kmc = KmeansClustering(ncentroid=ncentroid, max_iter=max_iter)
+    kmc.fit(data)
 
 if __name__ == "__main__":
     main()
