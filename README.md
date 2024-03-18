@@ -24,7 +24,7 @@ Decorators, lambda, context manager and build package.
 | ex05 | [`TinyStatistician.py`](/Module02/ex05/TinyStatistician.py) |
 
 ## [Module 03](/Module03)
-Numpy
+Numpy.
 | [Module 03](/Module03)  |       NumPy   |    
 | :--------------- |:---------------| 
 | ex00  |   [`NumPyCreator.py`](/Module03/ex00/NumPyCreator.py)  |  
@@ -33,3 +33,15 @@ Numpy
 | ex03  | [`ColorFilter.py`](/Module03/ex03/ColorFilter.py) |
 | ex04  | [`Kmeans.py`](/Module03/ex04/Kmeans.py)  | 
 
+## [Module 04](/Module04)
+Pandas.
+| [Module 04](/Module04)  |      Pandas   |    
+| :--------------- |:---------------| 
+| ex00  |   [`FileLoader.py`](/Module04/ex00/FileLoader.py)  |  
+| ex01  | [`YoungestFellah.py`](/Module04/ex01/YoungestFellah.py) | 
+| ex02  | [`ProportionBySport.py`](/Module04/ex02/ProportionBySport.py) |
+| ex03  | [`HowManyMedals.py`](/Module04/ex03/HowManyMedals.py) |
+| ex04  | [`SpatioTemporalData.py`](/Module04/ex04/SpatioTemporalData.py)  | 
+| ex05 | [`HowManyMedalsByCountry.py`](/Module04/ex05/HowManyMedalsByCountry.py) |
+| ex06 | [`MyPlotLib.py`](/Module04/ex05/HowManyMyPlotLib.py) |
+| ex07 | [`Komparator.py`](/Module04/ex05/Komparator.py) |
