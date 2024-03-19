@@ -34,7 +34,7 @@ Exercises to learn Python for Machine Learning
 | ex03  | [`HowManyMedals.py`](/Module04/ex03/HowManyMedals.py) |
 | ex04  | [`SpatioTemporalData.py`](/Module04/ex04/SpatioTemporalData.py)  | 
 | ex05 | [`HowManyMedalsByCountry.py`](/Module04/ex05/HowManyMedalsByCountry.py) |
-| ex06 | [`MyPlotLib.py`](/Module04/ex06/HowManyMyPlotLib.py) |
+| ex06 | [`MyPlotLib.py`](/Module04/ex06/MyPlotLib.py) |
 | ex07 | [`Komparator.py`](/Module04/ex07/Komparator.py) |
 
 ## Machine Learning Bootcamp
