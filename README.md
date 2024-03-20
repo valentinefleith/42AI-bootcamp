@@ -39,13 +39,13 @@ Exercises to learn Python for Machine Learning
 
 ## Machine Learning Bootcamp
 
-| [__Module 05__](/Module05)  |      __Linear algebra, Statistics, Linear Regression.__   | 
+| [__Module 05__](/Module05)  |      __Linear algebra, Statistics, Regression.__   | 
 | :--------------- |:---------------| 
 | ex00  | [`TinyStatistician.py`](/Module05/ex00/TinyStatistician.py)  |  
 | ex01  | [`tools.py`](/Module05/ex01/tools.py) | 
 | ex02  | [`prediction.py`](/Module05/ex02/prediction.py) |
 | ex03  | [`plot.py`](/Module05/ex03/plot.py) |
-| ex04  | [`vec_loss.py`]<!--(/Module05/ex04/vec_loss.py)-->  | 
+| ex04  | [`vec_loss.py`](/Module05/ex04/vec_loss.py) | 
 | ex05 | [`other_losses.py`]<!--(/Module05/ex05/other_losses.py)--> |
 | ex06 | [`plot.py`]<!--(/Module04/ex05/plot.py)--> |
 | ex07 | [`matrix.py`]<!--(/Module04/ex05/matrix.py)--> |
