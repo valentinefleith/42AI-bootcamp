@@ -46,6 +46,6 @@ Exercises to learn Python for Machine Learning
 | ex02  | [`prediction.py`](/Module05/ex02/prediction.py) |
 | ex03  | [`plot.py`](/Module05/ex03/plot.py) |
 | ex04  | [`vec_loss.py`](/Module05/ex04/vec_loss.py) | 
-| ex05 | [`other_losses.py`]<!--(/Module05/ex05/other_losses.py)--> |
+| ex05 | [`other_losses.py`](/Module05/ex05/other_losses.py) |
 | ex06 | [`plot.py`]<!--(/Module04/ex05/plot.py)--> |
 | ex07 | [`matrix.py`]<!--(/Module04/ex05/matrix.py)--> |
