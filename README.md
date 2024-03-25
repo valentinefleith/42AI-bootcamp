@@ -47,13 +47,13 @@ Exercises to learn Python for Machine Learning
 | ex03  | [`plot.py`](/Module05/ex03/plot.py) |
 | ex04  | [`vec_loss.py`](/Module05/ex04/vec_loss.py) | 
 | ex05 | [`other_losses.py`](/Module05/ex05/other_losses.py) |
-| ex06 | [`plot.py`](/Module05/ex05/plot.py) |
-| ex07 | [`matrix.py`]<!--(/Module04/ex05/matrix.py)--> |
+| ex06 | [`plot.py`](/Module05/ex06/plot.py) |
+| ex07 | [`matrix.py`](/Module05/ex07/matrix.py) |
 |  |  |
 | [__Module 06__](/Module06)  |      __Univariate Linear Regression__   |  
 | ex00  | [`vec_gradient.py`](/Module06/ex00/vec_gradient.py)  |  
-| ex01  | [`fit.py`]<!--(/Module06/ex01/fit.py)--> | 
-| ex02  | [`my_linear_regression.py`]<!--(/Module06/ex02/my_linear_regression.py)--> |
+| ex01  | [`fit.py`](/Module06/ex01/fit.py) | 
+| ex02  | [`my_linear_regression.py`](/Module06/ex02/my_linear_regression.py) |
 | ex03  | [`linear_model.py`]<!--(/Module06/ex03/linear_model.py)--> |
 | ex04  | [`z_score.py`]<!--(/Module06/ex04/z_score.py)--> | 
 | ex05 | [`minmax.py`]<!--(/Module06/ex05/minmax.py)--> |
