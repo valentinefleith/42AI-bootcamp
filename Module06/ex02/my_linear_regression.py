@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/25 09:41:43 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/25 17:39:32 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/25 18:07:09 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ class MyLinearRegression:
         self.max_iter = max_iter
         self.thetas = thetas
         self.gradient_history = []
-        self.thetas_history = [thetas]
+        self.thetas_history = []
 
     def loss_elem_(self, y, y_hat):
         if np.shape(y) != np.shape(y_hat):
@@ -69,7 +69,7 @@ class MyLinearRegression:
         Computes a gradient vector from three non-empty numpy.array, without any for loop.
         The three arrays must have compatible shapes.
         Args:
-            x: has to be a numpy.array, a matrix of shape m * 1. 
+            x: has to be a numpy.array, a matrix of shape m * 1.
             y: has to be a numpy.array, a vector of shape m * 1.
             theta: has to be a numpy.array, a 2 * 1 vector.
         Return:
@@ -105,14 +105,17 @@ class MyLinearRegression:
             This function should not raise any Exception.
         """
         self.thetas = self.thetas.astype(float)
-        for _ in range(self.max_iter):
+        self.thetas_history = [self.thetas.copy()]
+        for i in range(self.max_iter):
             gradient = self.gradient_(x, y)
             if gradient is None:
                 return gradient
             self.gradient_history.append(np.log(np.linalg.norm(gradient)))
             self.thetas[0] -= gradient[0] * self.alpha
             self.thetas[1] -= gradient[1] * self.alpha
-            self.thetas_history.append(self.thetas)
+            self.thetas_history.append(self.thetas.copy())
+            if abs(self.thetas_history[-1] - self.thetas_history[-2]).all() < 0.01:
+                break
 
     def plot_pred(self, x, y):
         """
@@ -133,15 +136,17 @@ class MyLinearRegression:
         plt.scatter(x, y)
         plt.plot(x, self.thetas[1] * x + self.thetas[0], color="orangered")
         for i, datapoint in enumerate(x):
-            plt.plot([datapoint, datapoint], [y[i], y_hat[i]], color="red", linestyle="--")
+            plt.plot(
+                [datapoint, datapoint], [y[i], y_hat[i]], color="red", linestyle="--"
+            )
         plt.title(f"Cost: {loss}")
         plt.show()
 
     def plot_grad_desc(self):
-        plt.plot(range(1, self.max_iter + 1), self.gradient_history)
-        plt.xlabel('Iteration')
-        plt.ylabel('Gradient magnitude')
-        plt.title('Gradient descent convergence')
+        plt.plot(range(1, len(self.thetas_history)), self.gradient_history)
+        plt.xlabel("Iteration")
+        plt.ylabel("Gradient magnitude")
+        plt.title("Gradient descent convergence")
         plt.show()
 
     def plot_loss(self, x, y):
@@ -151,12 +156,11 @@ class MyLinearRegression:
             y_hat = self.predict_(x).flatten()
             x, y = x.flatten(), y.flatten()
             loss_scores.append(np.log(self.loss_(y, y_hat)))
-        plt.plot(range(1, self.max_iter + 2), loss_scores)
-        plt.xlabel('Iteration')
-        plt.ylabel('Cost')
-        plt.title('Cost evolution through gradient descent')
+        plt.plot(range(1, len(self.thetas_history) + 1), loss_scores)
+        plt.xlabel("Iteration")
+        plt.ylabel("Cost")
+        plt.title("Cost evolution through gradient descent")
         plt.show()
-
 
     @staticmethod
     def add_intercept(x):
@@ -175,29 +179,3 @@ class MyLinearRegression:
             return None
         x = np.column_stack((np.zeros(np.shape(x)[0]) + 1, x))
         return x
-
-
-def main():
-    x = np.array([[12.4956442], [21.5007972], [31.5527382], [48.9145838], [57.5088733]])
-    y = np.array([[37.4013816], [36.1473236], [45.7655287], [46.6793434], [59.5585554]])
-    # lr1 = MyLinearRegression(np.array([[-1], [2]]))
-    # y_hat = lr1.predict_(x)
-    # print(y_hat)
-    # print(lr1.loss_elem_(y, y_hat))
-    # print(lr1.loss_(y, y_hat))
-    # lr1.plot_(x, y)
-    # lr1.fit_(x, y)
-    lr2 = MyLinearRegression(np.array([[5], [1]]), max_iter=150)
-    lr2.fit_(x, y)
-    lr2.plot_pred(x, y)
-    lr2.plot_grad_desc()
-    lr2.plot_loss(x, y)
-    print(lr2.thetas)
-    y_hat = lr2.predict_(x)
-    print(y_hat)
-    print(lr2.loss_elem_(y, y_hat))
-    print(lr2.loss_(y, y_hat))
-
-
-if __name__ == "__main__":
-    main()
