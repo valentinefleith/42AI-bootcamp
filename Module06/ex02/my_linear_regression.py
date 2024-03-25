@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/25 09:41:43 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/25 17:34:49 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/25 17:39:32 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -150,7 +150,7 @@ class MyLinearRegression:
             self.thetas = value
             y_hat = self.predict_(x).flatten()
             x, y = x.flatten(), y.flatten()
-            loss_scores.append(self.loss_(y, y_hat))
+            loss_scores.append(np.log(self.loss_(y, y_hat)))
         plt.plot(range(1, self.max_iter + 2), loss_scores)
         plt.xlabel('Iteration')
         plt.ylabel('Cost')
