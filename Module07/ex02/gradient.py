@@ -6,15 +6,15 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/23 22:57:39 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/27 16:34:23 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/27 18:30:45 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import numpy as np
-from prediction import predict_
+from prediction import predict_, add_intercept
 
 
-def simple_gradient(x, y, theta):
+def gradient(x, y, theta):
     """
         Computes a gradient vector from three non-empty numpy.array, without any for loop.
         The three arrays must have compatible shapes.
@@ -30,19 +30,20 @@ def simple_gradient(x, y, theta):
             This function should not raise any Exception.
     """
     y_hat = predict_(x, theta)
-    if y_hat is None:
+    x_prime = add_intercept(x.copy())
+    if x_prime is None or y_hat is None:
         return None
-    grad = (1 / len(x)) * np.matmul(x_prime.T, y_hat - y)
+    grad = (1 / x.shape[0]) * np.matmul(x_prime.T, y_hat - y)
     return grad
 
 
 def main():
-    x = np.array([12.4956442, 21.5007972, 31.5527382, 48.9145838, 57.5088733]).reshape((-1, 1))
-    y = np.array([37.4013816, 36.1473236, 45.7655287, 46.6793434, 59.5585554]).reshape((-1, 1))
-    theta1 = np.array([2, 0.7]).reshape((-1, 1))
-    print(simple_gradient(x, y, theta1))
-    theta2 = np.array([1, -0.4]).reshape((-1, 1))
-    print(simple_gradient(x, y, theta2))
+    x = np.array([[ -6, -7, -9],[ 13, -2, 14], [ -7, 14, -1], [ -8, -4, 6], [ -5, -9, 6], [ 1, -5, 11], [ 9, -11, 8]])
+    y = np.array([2, 14, -13, 5, 12, 4, -19]).reshape((-1, 1))
+    theta1 = np.array([0, 3,0.5,-6]).reshape((-1, 1))
+    print(gradient(x, y, theta1))
+    theta2 = np.array([0, 0, 0, 0]).reshape((-1, 1))
+    print(gradient(x, y, theta2))
 
 
 if __name__ == "__main__":
