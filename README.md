@@ -61,9 +61,9 @@ Exercises to learn Python for Machine Learning
 | [__Module 07__](/Module07)  |      __Multivariate Linear Regression__   |  
 | ex00  | [`prediction.py`](/Module07/ex00/prediction.py)  |  
 | ex01  | [`loss.py`](/Module07/ex01/loss.py) | 
-| ex02  | [`gradient.py`]<!--(/Module07/ex02/gradient.py)--> |
-| ex03  | [`fit.py`]<!--(/Module07/ex03/fit.py)--> |
-| ex04  | [`mylinearregression.py`]<!--(/Module07/ex04/mylinearregression.py)--> | 
+| ex02  | [`gradient.py`](/Module07/ex02/gradient.py) |
+| ex03  | [`fit.py`](/Module07/ex03/fit.py) |
+| ex04  | [`mylinearregression.py`](/Module07/ex04/mylinearregression.py) | 
 | ex05 | [`multivariate_linear_model.py`]<!--(/Module07/ex05/multivariate_linear_model.py)--> |
 | ex06  | [`polynomial_model.py`]<!--(/Module07/ex06/polynomial_model.py)--> | 
 | ex07  | [`polynomial_train.py`]<!--(/Module07/ex07/polynomial_train.py)--> | 
