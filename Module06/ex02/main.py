@@ -6,18 +6,19 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/25 18:06:14 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/25 18:07:09 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/26 18:32:37 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import numpy as np
 from my_linear_regression import MyLinearRegression
+from z_score import zscore
 
 
 def main():
     # x = np.array([[12.4956442], [21.5007972], [31.5527382], [48.9145838], [57.5088733]])
     # y = np.array([[37.4013816], [36.1473236], [45.7655287], [46.6793434], [59.5585554]])
-    y = np.array(
+    y = zscore(np.array(
         [
             [63.00411131],
             [188.7195836],
@@ -60,8 +61,8 @@ def main():
             [586.09404783],
             [536.64688616],
         ]
-    )
-    x = np.arange(len(y))
+    ))
+    x = zscore(np.arange(len(y)))
     # lr1 = MyLinearRegression(np.array([[-1], [2]]))
     # y_hat = lr1.predict_(x)
     # print(y_hat)
