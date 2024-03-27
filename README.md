@@ -54,7 +54,7 @@ Exercises to learn Python for Machine Learning
 | ex00  | [`vec_gradient.py`](/Module06/ex00/vec_gradient.py)  |  
 | ex01  | [`fit.py`](/Module06/ex01/fit.py) | 
 | ex02  | [`my_linear_regression.py`](/Module06/ex02/my_linear_regression.py) |
-| ex03  | [`linear_model.py`]<!--(/Module06/ex03/linear_model.py)--> |
-| ex04  | [`z_score.py`]<!--(/Module06/ex04/z_score.py)--> | 
-| ex05 | [`minmax.py`]<!--(/Module06/ex05/minmax.py)--> |
+| ex03  | [`linear_model.py`](/Module06/ex03/linear_model.py) |
+| ex04  | [`z_score.py`](/Module06/ex04/z_score.py) | 
+| ex05 | [`minmax.py`](/Module06/ex05/minmax.py) |
 
