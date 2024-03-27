@@ -57,4 +57,16 @@ Exercises to learn Python for Machine Learning
 | ex03  | [`linear_model.py`](/Module06/ex03/linear_model.py) |
 | ex04  | [`z_score.py`](/Module06/ex04/z_score.py) | 
 | ex05 | [`minmax.py`](/Module06/ex05/minmax.py) |
+|  |  |
+| [__Module 07__](/Module07)  |      __Multivariate Linear Regression__   |  
+| ex00  | [`prediction.py`](/Module07/ex00/prediction.py)  |  
+| ex01  | [`loss.py`](/Module07/ex01/loss.py) | 
+| ex02  | [`gradient.py`]<!--(/Module07/ex02/gradient.py)--> |
+| ex03  | [`fit.py`]<!--(/Module07/ex03/fit.py)--> |
+| ex04  | [`mylinearregression.py`]<!--(/Module07/ex04/mylinearregression.py)--> | 
+| ex05 | [`multivariate_linear_model.py`]<!--(/Module07/ex05/multivariate_linear_model.py)--> |
+| ex06  | [`polynomial_model.py`]<!--(/Module07/ex06/polynomial_model.py)--> | 
+| ex07  | [`polynomial_train.py`]<!--(/Module07/ex07/polynomial_train.py)--> | 
+| ex08  | [`data_spliter.py`]<!--(/Module07/ex08/data_spliter.py)--> | 
+| ex09  | [`space_avocado.py`, `benchmark_train.py`]<!--(/Module07/ex09)--> | 
 
