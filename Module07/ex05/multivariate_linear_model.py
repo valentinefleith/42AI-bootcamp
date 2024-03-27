@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 19:21:57 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/27 20:27:06 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/27 20:51:39 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,8 @@ class Feature:
 
 
 def univariate_plots(data):
-    myLR_age = MyLR(
-        thetas=np.array([[600.0], [-1.0]]), alpha=2.5e-5, max_iter=100000
-    )
-    myLR_thrust = MyLR(
-        thetas=np.array([[0.0], [20.0]]), alpha=2.5e-5, max_iter=100000
-    )
+    myLR_age = MyLR(thetas=np.array([[600.0], [-1.0]]), alpha=2.5e-5, max_iter=100000)
+    myLR_thrust = MyLR(thetas=np.array([[0.0], [20.0]]), alpha=2.5e-5, max_iter=100000)
     myLR_distance = MyLR(
         thetas=np.array([[750.0], [-5.0]]), alpha=2.5e-5, max_iter=100000
     )
@@ -64,10 +60,38 @@ def fit_and_plot_pred(feature, Y):
     plt.show()
 
 
+def multivariate_plots(data):
+    X = np.array(data[["Age", "Thrust_power", "Terameters"]])
+    Y = np.array(data[["Sell_price"]])
+    my_lreg = MyLR(
+        thetas=np.array([[300.0], [-20.0], [1.0], [1.0]]), alpha=1e-5, max_iter=500000
+    )
+    my_lreg.fit_(X, Y)
+    print(my_lreg.thetas)
+    y_hat = my_lreg.predict_(X)
+    print(my_lreg.loss_(Y, y_hat))
+    colors = [
+        ["midnightblue", "cornflowerblue"],
+        ["forestgreen", "lime"],
+        ["mediumorchid", "orchid"],
+    ]
+    for i in range(3):
+        plot_feat_pred_multivariate(X[:, i], y_hat, Y, colors[i])
+
+
+def plot_feat_pred_multivariate(X, y_hat, Y, colors):
+    plt.scatter(X, Y, color=colors[0])
+    plt.scatter(X, y_hat, color=colors[1], s=10)
+    plt.grid()
+    plt.show()
+
+
 def main():
     if len(sys.argv) != 2:
         sys.exit("You must add a csv file in argument.")
-    univariate_plots(pd.read_csv(sys.argv[1]))
+    data = pd.read_csv(sys.argv[1])
+    # univariate_plots(data)
+    multivariate_plots(data)
 
 
 if __name__ == "__main__":
