@@ -6,7 +6,7 @@
 #    By: vafleith <vafleith@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 19:21:57 by vafleith          #+#    #+#              #
-#    Updated: 2024/03/27 20:21:20 by vafleith         ###   ########.fr        #
+#    Updated: 2024/03/27 20:27:06 by vafleith         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,18 +25,7 @@ class Feature:
     colors: list[str]
 
 
-def fit_and_plot_pred(feature, Y):
-    feature.model.fit_(feature.data, Y)
-    y_hat = feature.model.predict_(feature.data)
-    plt.scatter(feature.data, Y, color=feature.colors[0])
-    plt.scatter(feature.data, y_hat, color=feature.colors[1], s=10)
-    plt.show()
-
-
-def main():
-    if len(sys.argv) != 2:
-        sys.exit("You must add a csv file in argument.")
-    data = pd.read_csv(sys.argv[1])
+def univariate_plots(data):
     myLR_age = MyLR(
         thetas=np.array([[600.0], [-1.0]]), alpha=2.5e-5, max_iter=100000
     )
@@ -64,6 +53,21 @@ def main():
     )
     for feature in [age_feat, thrust_feat, distance_feat]:
         fit_and_plot_pred(feature, Y)
+
+
+def fit_and_plot_pred(feature, Y):
+    feature.model.fit_(feature.data, Y)
+    y_hat = feature.model.predict_(feature.data)
+    print(f"Loss: {feature.model.loss_(Y, y_hat)}")
+    plt.scatter(feature.data, Y, color=feature.colors[0])
+    plt.scatter(feature.data, y_hat, color=feature.colors[1], s=10)
+    plt.show()
+
+
+def main():
+    if len(sys.argv) != 2:
+        sys.exit("You must add a csv file in argument.")
+    univariate_plots(pd.read_csv(sys.argv[1]))
 
 
 if __name__ == "__main__":
